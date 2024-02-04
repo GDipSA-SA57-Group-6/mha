@@ -64,7 +64,7 @@ public class User implements Serializable {
   private String emailAddress;
   
   @JsonIgnore
-  @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+  @OneToMany(mappedBy = "user", cascade = {CascadeType.ALL, CascadeType.PERSIST} , fetch = FetchType.EAGER)
   private List<DailyExercise> dailyExercises;
   
   public User(String name, String password, LocalDate birthDate, String gender, 
