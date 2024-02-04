@@ -37,15 +37,15 @@ public class DailyExerciseController {
     
     //Get: http://localhost:8080/api/daily-exercise/calories-burnt-today/1
     @GetMapping("/calories-burnt-today/{userId}")
-    public ResponseEntity<Integer> getCaloriesBurntToday(@PathVariable Integer userId) {
+    public ResponseEntity<String> getCaloriesBurntToday(@PathVariable Integer userId) {
         try {
             LocalDate today = LocalDate.now();
 
             Integer caloriesBurntToday = exRepo.sumCaloriesBurntByUserIdAndExerciseDate(userId, today);
 
-            return ResponseEntity.ok(caloriesBurntToday != null ? caloriesBurntToday : 0);
+            return ResponseEntity.ok(String.valueOf(caloriesBurntToday != null ? caloriesBurntToday : 0));
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(0);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("0");
         }
     }
     

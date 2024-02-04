@@ -1,15 +1,15 @@
 package sg.nus.iss.mha.model;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.lang.NonNull;
 
-import jakarta.persistence.CascadeType;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -27,9 +27,8 @@ import lombok.ToString;
 @AllArgsConstructor
 @Entity
 @Table(name = "daily_exercise")
-public class DailyExercise implements Serializable {
-	
-	private static final long serialVersionUID = 6529685098267757680L;
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+public class DailyExercise{
 	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -7,6 +7,10 @@ import java.util.List;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.lang.NonNull;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -31,6 +35,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @Entity
 @Table(name = "user")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "userId")
 public class User implements Serializable {
   public static final String DATE_FORMAT = "yyyy-MM-dd";
   private static final long serialVersionUID = 6529685098267757680L;
@@ -58,6 +63,7 @@ public class User implements Serializable {
   @NonNull
   private String emailAddress;
   
+  @JsonIgnore
   @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
   private List<DailyExercise> dailyExercises;
   
