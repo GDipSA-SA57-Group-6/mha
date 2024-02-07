@@ -17,28 +17,30 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @Entity
-@Table(name = "advertisement")
-public class Advertisement {
+@Table(name = "video")
+public class Video {
 
     @Id
-    @Column(name="adv_id")
+    @Column(name = "vid_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer advId;
+    private Integer vidId;
 
-    @Column(name = "adv_url", columnDefinition = "TEXT")
+    @Column(name = "vid_url", columnDefinition = "TEXT")
     @NotNull
-    private String advurl;
+    private String vidUrl;
 
     @Column(name = "description")
     private String description;
+
+    @Column(name = "image_url")
+    private String imageUrl;
 
     @Column(name = "type")
     @NotNull
     private Integer type;
 
-    public Advertisement(String advUrl, Integer type){
-        this.advurl = advUrl;
+    public Video(String vidUrl, Integer type){
+        this.vidUrl = vidUrl;
         this.type = type;
     }
-    
 }
