@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import sg.nus.iss.mha.model.Advertisement;
 import sg.nus.iss.mha.service.AdvertisementService;
 import sg.nus.iss.mha.service.UserService;
+import sg.nus.iss.mha.service.UserService;
 import sg.nus.iss.mha.model.User;
 
 import org.springframework.http.ResponseEntity;
@@ -21,14 +22,21 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/advertisements")
+@CrossOrigin(origins = "http://localhost:3000")
 public class AdvertisementController {
 
     private final AdvertisementService advertisementService;
-    private UserService uService;
+    private final UserService uService;
 
-    @Autowired
-    public AdvertisementController(AdvertisementService advertisementService) {
+//    @Autowired
+//    public AdvertisementController(AdvertisementService advertisementService) {
+//        this.advertisementService = advertisementService;
+//    }
+
+    @Autowired // 添加了UserService的注入
+    public AdvertisementController(AdvertisementService advertisementService, UserService uService) {
         this.advertisementService = advertisementService;
+        this.uService = uService; // 使用构造函数注入UserService
     }
 
     @GetMapping
