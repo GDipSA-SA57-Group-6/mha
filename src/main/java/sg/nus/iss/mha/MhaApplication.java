@@ -70,6 +70,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 
+import sg.nus.iss.mha.model.Food;
+import sg.nus.iss.mha.repository.FoodRepository;
 import sg.nus.iss.mha.model.DailyExercise;
 import sg.nus.iss.mha.model.User;
 import sg.nus.iss.mha.repository.DailyExerciseRepository;
@@ -84,7 +86,37 @@ public class MhaApplication {
     public static void main(String[] args) {
         SpringApplication.run(MhaApplication.class, args);
     }
+    
+    /*
+	@Bean
+	CommandLineRunner loadData(FoodRepository foodRepository) {
+			return (args) -> {
+				Food food1 = new Food();
+				food1.setName("Cookies");
+				food1.setQuantity_description("1 big");
+				food1.setProtein(100);
+				food1.setCab(30);
+				food1.setFat(20);
+				food1.setCal(80);
+				
+				foodRepository.save(food1);
+				
+				
+				Food food2 = new Food();
+				food2.setName("noodle");
+				food2.setQuantity_description("one unonce");
+				food2.setProtein(56);
+				food2.setCab(20);
+				food2.setFat(70);
+				food2.setCal(100);
+				
+				foodRepository.save(food2);
+		};
+		
+	}
+	*/
 
+    /*
     @Bean
     public CommandLineRunner loadData(UserRepository userRepository, DailyExerciseRepository dailyExerciseRepository) {
         return args -> {
@@ -116,4 +148,5 @@ public class MhaApplication {
             // ...
         };
     }
+    */
 }
