@@ -71,4 +71,13 @@ public class VideoController {
     // 女性 lw:1400 mh:2000 gw:2300
 
 
+
+
+    // 根据推荐类型获取视频列表的API
+    @GetMapping("/videos/{type}")
+    public ResponseEntity<List<Video>> getVideosByType(@PathVariable Integer type) {
+        // 调用VideoService来获取视频列表
+        List<Video> videos = videoService.getVideosByType(type);
+        return new ResponseEntity<>(videos, HttpStatus.OK);
+    }
 }

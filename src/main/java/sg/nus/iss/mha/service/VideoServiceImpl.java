@@ -24,4 +24,9 @@ public class VideoServiceImpl implements VideoService {
     public Video saveVideo(Video video) {
         return videoRepository.save(video);
     }
+
+    @Override
+    public List<Video> getVideosByType(Integer type) {
+        return videoRepository.findByType(type);
+    }
 }
