@@ -70,6 +70,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 
+import sg.nus.iss.mha.model.Food;
+import sg.nus.iss.mha.repository.FoodRepository;
 import sg.nus.iss.mha.model.DailyExercise;
 import sg.nus.iss.mha.model.User;
 import sg.nus.iss.mha.repository.DailyExerciseRepository;
@@ -84,36 +86,67 @@ public class MhaApplication {
     public static void main(String[] args) {
         SpringApplication.run(MhaApplication.class, args);
     }
+    
+    /*
+	@Bean
+	CommandLineRunner loadData(FoodRepository foodRepository) {
+			return (args) -> {
+				Food food1 = new Food();
+				food1.setName("Cookies");
+				food1.setQuantity_description("1 big");
+				food1.setProtein(100);
+				food1.setCab(30);
+				food1.setFat(20);
+				food1.setCal(80);
+				
+				foodRepository.save(food1);
+				
+				
+				Food food2 = new Food();
+				food2.setName("noodle");
+				food2.setQuantity_description("one unonce");
+				food2.setProtein(56);
+				food2.setCab(20);
+				food2.setFat(70);
+				food2.setCal(100);
+				
+				foodRepository.save(food2);
+		};
+		
+	}
+	*/
 
-//    @Bean
-//    public CommandLineRunner loadData(UserRepository userRepository, DailyExerciseRepository dailyExerciseRepository) {
-//        return args -> {
-//            // 初始化用户
-//            User admin = new User("admin iss", "0adminpassword", LocalDate.of(2001, 9, 18), "male", "admin@email.com");
-//            User tin = new User("tin nus", "0tinpassword", LocalDate.of(1998, 2, 7), "male", "tin@email.com");
-//            User lifang = new User("Li Fang", "0lfpassword", LocalDate.of(1998, 2, 7), "female", "lifang@email.com");
-//
-//            userRepository.save(admin);
-//            userRepository.save(tin);
-//            userRepository.save(lifang);
-//
-//            // 初始化每日锻炼记录
-//            DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-//            LocalDate[] days = {
-//                    LocalDate.parse("2024-01-01", df),
-//                    LocalDate.parse("2024-01-02", df),
-//                    LocalDate.parse("2024-01-03", df),
-//                    // ... (其他日期)
-//            };
-//
-//            for (LocalDate day : days) {
-//                DailyExercise exercise = new DailyExercise(day, admin, 1100); // 假设卡路里消耗为1100
-//                dailyExerciseRepository.save(exercise);
-//            }
-//
-//            // 为其他用户创建每日锻炼记录
-//            // dailyExerciseRepository.save(new DailyExercise(day1, tin, 1100));
-//            // ...
-//        };
-//    }
+    /*
+    @Bean
+    public CommandLineRunner loadData(UserRepository userRepository, DailyExerciseRepository dailyExerciseRepository) {
+        return args -> {
+            // 初始化用户
+            User admin = new User("admin iss", "0adminpassword", LocalDate.of(2001, 9, 18), "male", "admin@email.com");
+            User tin = new User("tin nus", "0tinpassword", LocalDate.of(1998, 2, 7), "male", "tin@email.com");
+            User lifang = new User("Li Fang", "0lfpassword", LocalDate.of(1998, 2, 7), "female", "lifang@email.com");
+
+            userRepository.save(admin);
+            userRepository.save(tin);
+            userRepository.save(lifang);
+
+            // 初始化每日锻炼记录
+            DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate[] days = {
+                    LocalDate.parse("2024-01-01", df),
+                    LocalDate.parse("2024-01-02", df),
+                    LocalDate.parse("2024-01-03", df),
+                    // ... (其他日期)
+            };
+
+            for (LocalDate day : days) {
+                DailyExercise exercise = new DailyExercise(day, admin, 1100); // 假设卡路里消耗为1100
+                dailyExerciseRepository.save(exercise);
+            }
+
+            // 为其他用户创建每日锻炼记录
+            // dailyExerciseRepository.save(new DailyExercise(day1, tin, 1100));
+            // ...
+        };
+    }
+    */
 }
