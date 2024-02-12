@@ -25,7 +25,7 @@ public class Advertisement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer advId;
 
-    @Column(name = "adv_url", columnDefinition = "TEXT")
+    @Column(name = "adv_url", length = 65535)
     @NotNull
     private String advurl;
 
