@@ -92,25 +92,69 @@ public class MhaApplication {
 	CommandLineRunner loadData(FoodRepository foodRepository) {
 			return (args) -> {
 				Food food1 = new Food();
-				food1.setName("Cookies");
+				food1.setName("banana");
 				food1.setQuantity_description("1 big");
-				food1.setProtein(100);
-				food1.setCab(30);
-				food1.setFat(20);
-				food1.setCal(80);
+				food1.setProtein(1);
+				food1.setCal(105);
+				food1.setCab(27);
+				food1.setFat(0);
 				
 				foodRepository.save(food1);
 				
 				
 				Food food2 = new Food();
-				food2.setName("noodle");
-				food2.setQuantity_description("one unonce");
-				food2.setProtein(56);
-				food2.setCab(20);
-				food2.setFat(70);
-				food2.setCal(100);
+				food2.setName("pasta");
+				food2.setQuantity_description("2 ounces");
+				food2.setProtein(10);
+				food2.setCal(200);
+				food2.setCab(40);
+				food2.setFat(1);
 				
 				foodRepository.save(food2);
+				
+				Food food3 = new Food();
+				food3.setName("coke");
+				food3.setQuantity_description("200ml");
+				food3.setProtein(0);
+				food3.setCal(84);
+				food3.setCab(21);
+				food3.setFat(0);
+				
+				foodRepository.save(food3);
+				
+				
+				Food food4 = new Food();
+				food4.setName("rice");
+				food4.setQuantity_description("1/2 cup");
+				food4.setProtein(2);
+				food4.setCal(102);
+				food4.setCab(22);
+				food4.setFat(0);
+				
+				foodRepository.save(food4);
+				
+				
+				
+				Food food5 = new Food();
+				food5.setName("steak");
+				food5.setQuantity_description(" 6 ounces");
+				food5.setProtein(38);
+				food5.setCal(384);
+				food5.setCab(0);
+				food5.setFat(26);
+				
+				foodRepository.save(food5);
+				
+				
+				Food food6 = new Food();
+				food5.setName("seafood");
+				food5.setQuantity_description("200g");
+				food5.setProtein(20);
+				food5.setCal(200);
+				food5.setCab(5);
+				food5.setFat(10);
+				
+				foodRepository.save(food5);
 		};
 		
 	}

@@ -23,7 +23,7 @@ public class DailySummaryServiceImpl implements DailySummaryService {
 		return dailySummaryRepository.findAll();
 	}
 
-	
+	@Transactional(readOnly = false)
 	@Override
 	public DailySummary saveDailySummary(DailySummary inDailySummary) {
 		// TODO Auto-generated method stub
