@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import sg.nus.iss.mha.model.Video;
 import sg.nus.iss.mha.service.VideoService;
 import sg.nus.iss.mha.service.UserService;
+import sg.nus.iss.mha.service.DiabetesDataService;
+import sg.nus.iss.mha.service.HeartDiseaseDataService;
 import sg.nus.iss.mha.model.User;
 
 import java.time.LocalDate;
@@ -22,13 +24,19 @@ public class VideoController {
 
     private final VideoService videoService;
     private final UserService uService;
-    //应该还有一个  心脏病和糖尿病的service
+
 
     @Autowired
     public VideoController(VideoService videoService, UserService uService) {
         this.videoService = videoService;
         this.uService = uService;
     }
+
+    @Autowired
+    private DiabetesDataService diabetesDataService;
+
+    @Autowired
+    private HeartDiseaseDataService heartDiseaseDataService;
 
     @GetMapping
     public List<Video> getAllVideos() {
@@ -45,35 +53,39 @@ public class VideoController {
     public ResponseEntity<Integer> recommendVideo(@PathVariable Integer userId) {
         int type = -1;
         Optional<User> optUser = uService.findUser(userId);
-        if(optUser.isPresent()){
+        if (optUser.isPresent()) {
             User user = optUser.get();
             int userType = user.getTargetCalories();
-            LocalDate currentDate = LocalDate.now();
-            LocalDate birthDate = user.getBirthDate();
-            Period period = Period.between(birthDate, currentDate);
-            int age = period.getYears();
-            if (userType == 1900 || userType == 2500 || userType == 2800) {
-                if (age < 45) {
-                    type = 1;  // 男性
-                } else type = 2;
-            }
-            if (userType == 1400 || userType == 2000 || userType == 2300) {
-                if (age < 45) {
-                    type = 3;  // 女性
-                } else type = 4;
+            Integer heartDiseaseClass = heartDiseaseDataService.getLatestPredictionClassByUserId(userId);
+            Integer diabetesClass = diabetesDataService.getLatestPredictionClassByUserId(userId);
+
+            if (heartDiseaseClass == 0 && diabetesClass == 0) {
+                // 没有心脏病和糖尿病风险
+                if (userType == 1900 || userType == 1400) {
+                    return ResponseEntity.ok(1);
+                } else if (userType == 2500 || userType == 2000) {
+                    return ResponseEntity.ok(2);
+                } else if (userType == 2800 || userType == 2300) {
+                    return ResponseEntity.ok(3);
+                }
+            } else {
+                // 有心脏病或糖尿病风险
+                if (userType == 1900 || userType == 1400) {
+                    return ResponseEntity.ok(4);
+                } else if (userType == 2500 || userType == 2000) {
+                    return ResponseEntity.ok(5);
+                } else if (userType == 2800 || userType == 2300) {
+                    return ResponseEntity.ok(6);
+                }
             }
         }
-        return new ResponseEntity<>(type, HttpStatus.OK);
+        return ResponseEntity.notFound().build();
     }
 
     // 说明用于推荐的卡路里和年龄的标准
     // 男性 lw:1900 mh:2500 gw:2800
     // 女性 lw:1400 mh:2000 gw:2300
 
-
-
-
-    // 根据推荐类型获取视频列表的API
     @GetMapping("/videos/{type}")
     public ResponseEntity<List<Video>> getVideosByType(@PathVariable Integer type) {
         // 调用VideoService来获取视频列表
