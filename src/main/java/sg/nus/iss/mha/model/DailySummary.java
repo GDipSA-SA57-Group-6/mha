@@ -4,17 +4,21 @@ import java.time.LocalDate;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "daily_summary")
 public class DailySummary {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	private int userid;
+	@Column(name = "user_id")
+	private int userId;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
 	private int cal_sum;
@@ -26,8 +30,8 @@ public class DailySummary {
 
 	public DailySummary() {}
 	
-	public DailySummary(int userid,LocalDate date,int cal_sum, int protein_sum,int fat_sum, int carb_sum) {
-		this.userid=userid;
+	public DailySummary(int userId,LocalDate date,int cal_sum, int protein_sum,int fat_sum, int carb_sum) {
+		this.userId=userId;
 		this.date=date;
 		this.cal_sum = cal_sum;
 		this.protein_sum=protein_sum;
@@ -44,12 +48,12 @@ public class DailySummary {
 		this.id = id;
 	}
 
-	public int getUserid() {
-		return userid;
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setUserid(int userid) {
-		this.userid = userid;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 	public LocalDate getDate() {
@@ -94,7 +98,7 @@ public class DailySummary {
 
 	@Override
 	public String toString() {
-		return "DailySummary [id=" + id + ", userid=" + userid + ", date=" + date + ", cal_sum=" + cal_sum
+		return "DailySummary [id=" + id + ", userId=" + userId + ", date=" + date + ", cal_sum=" + cal_sum
 				+ ", protein_sum=" + protein_sum + ", fat_sum=" + fat_sum + ", carb_sum=" + carb_sum + "]";
 	}
 	

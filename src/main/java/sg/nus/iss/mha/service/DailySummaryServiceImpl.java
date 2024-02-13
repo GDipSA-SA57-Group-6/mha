@@ -1,6 +1,8 @@
 package sg.nus.iss.mha.service;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,6 +31,11 @@ public class DailySummaryServiceImpl implements DailySummaryService {
 		// TODO Auto-generated method stub
 		return dailySummaryRepository.save(inDailySummary);
 
+	}
+
+	@Override
+	public Optional<DailySummary> findByUserIdAndDate(int userId, LocalDate date) {
+		return dailySummaryRepository.findByUserIdAndDate(userId, date);
 	}
   
 }
