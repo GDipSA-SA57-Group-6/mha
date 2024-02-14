@@ -147,14 +147,40 @@ public class MhaApplication {
 				
 				
 				Food food6 = new Food();
-				food5.setName("seafood");
-				food5.setQuantity_description("200g");
-				food5.setProtein(20);
-				food5.setCal(200);
-				food5.setCab(5);
-				food5.setFat(10);
+				food6.setName("seafood");
+				food6.setQuantity_description("200g");
+				food6.setProtein(20);
+				food6.setCal(200);
+				food6.setCab(5);
+				food6.setFat(10);
+				food6.setUserId("1");
+
 				
-				foodRepository.save(food5);
+				foodRepository.save(food6);
+				
+				Food food7 = new Food();
+				food7.setName("egg");
+				food7.setQuantity_description("1 big");
+				food7.setProtein(6);
+				food7.setCal(70);
+				food7.setCab(1);
+				food7.setFat(5);
+				food7.setUserId("1");
+
+				
+				foodRepository.save(food7);
+				
+				Food food8 = new Food();
+				food8.setName("cookie");
+				food8.setQuantity_description("1 big");
+				food8.setProtein(2);
+				food8.setCal(200);
+				food8.setCab(25);
+				food8.setFat(10);
+				food8.setUserId("2");
+
+				
+				foodRepository.save(food8);
 		};
 		
 	}
