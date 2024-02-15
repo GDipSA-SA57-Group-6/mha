@@ -6,4 +6,5 @@ import java.util.List;
 public interface AdvertisementService {
     List<Advertisement> getAllAdvertisements();
     Advertisement saveAdvertisement(Advertisement advertisement);
+    List<Advertisement> getAdvertisementsByType(Integer type);
 }

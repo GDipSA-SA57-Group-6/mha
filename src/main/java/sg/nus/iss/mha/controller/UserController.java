@@ -17,9 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 import sg.nus.iss.mha.model.User;
 import sg.nus.iss.mha.service.UserService;
 
-@CrossOrigin
+
 @RestController
 @RequestMapping("/api/user")
+@CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
   @Autowired
   private UserService uService;

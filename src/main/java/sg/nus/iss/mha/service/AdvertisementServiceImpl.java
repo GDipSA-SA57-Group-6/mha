@@ -25,4 +25,9 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     public Advertisement saveAdvertisement(Advertisement advertisement) {
         return advertisementRepository.save(advertisement);
     }
+
+    @Override
+    public List<Advertisement> getAdvertisementsByType(Integer type){
+        return advertisementRepository.findAdvByType(type);
+    }
 }

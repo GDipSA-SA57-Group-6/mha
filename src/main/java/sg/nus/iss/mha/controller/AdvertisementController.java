@@ -10,6 +10,7 @@ import sg.nus.iss.mha.service.AdvertisementService;
 import sg.nus.iss.mha.service.UserService;
 import sg.nus.iss.mha.service.UserService;
 import sg.nus.iss.mha.model.User;
+import java.util.ArrayList;
 
 import org.springframework.http.ResponseEntity;
 
@@ -50,32 +51,60 @@ public class AdvertisementController {
         return ResponseEntity.ok("New Advertisement record created successfully");
     }
 
+
     @GetMapping("/path/{userId}")
-    public ResponseEntity<Integer> recommendAdvertidement(@PathVariable Integer userId) {
-        int type=-1;
-        Optional<User> optUser = uService.findUser(userId);
+    public ResponseEntity<List<Advertisement>> recommend_Advertidement(@PathVariable Integer userId) {
+        //int type=-1;
+    List<Advertisement> advList = new ArrayList<>();
+    Optional<User> optUser = uService.findUser(userId);
         if(optUser.isPresent()){
-            User user = optUser.get();
-            int userType = user.getTargetCalories();
-            LocalDate currentDate = LocalDate.now();
-            LocalDate birthDate = user.getBirthDate();
-            Period period = Period.between(birthDate, currentDate);
-            int age = period.getYears();
-            if (userType==1900||userType==2500||userType==2800) {
-                if (age<45) {
-                    type = 1;  //male
-                }
-                else type = 2;  
-            }
-            if (userType==1400||userType==2000||userType==2300) {
-                if (age<45) {
-                    type = 3;  //female
-                }
-                else type = 4;   
-            }
-        }
-        return new ResponseEntity<>(type, HttpStatus.OK);
+    User user = optUser.get();
+    int userType = user.getTargetCalories();
+    LocalDate currentDate = LocalDate.now();
+    LocalDate birthDate = user.getBirthDate();
+    Period period = Period.between(birthDate, currentDate);
+    int age = period.getYears();
+    if (userType==1900||userType==2500||userType==2800) {
+    if (age<45) {
+    advList = advertisementService.getAdvertisementsByType(1); //male
     }
+     else advList = advertisementService.getAdvertisementsByType(2);
+    }
+    if (userType==1400||userType==2000||userType==2300) {
+    if (age<45) {
+    advList = advertisementService.getAdvertisementsByType(3); //female
+    }
+    else advList = advertisementService.getAdvertisementsByType(4);
+    }
+    }
+    return ResponseEntity.ok(advList);
+    }
+//    @GetMapping("/path/{userId}")
+//    public ResponseEntity<Integer> recommendAdvertidement(@PathVariable Integer userId) {
+//        int type=-1;
+//        Optional<User> optUser = uService.findUser(userId);
+//        if(optUser.isPresent()){
+//            User user = optUser.get();
+//            int userType = user.getTargetCalories();
+//            LocalDate currentDate = LocalDate.now();
+//            LocalDate birthDate = user.getBirthDate();
+//            Period period = Period.between(birthDate, currentDate);
+//            int age = period.getYears();
+//            if (userType==1900||userType==2500||userType==2800) {
+//                if (age<45) {
+//                    type = 1;  //male
+//                }
+//                else type = 2;
+//            }
+//            if (userType==1400||userType==2000||userType==2300) {
+//                if (age<45) {
+//                    type = 3;  //female
+//                }
+//                else type = 4;
+//            }
+//        }
+//        return new ResponseEntity<>(type, HttpStatus.OK);
+//    }
 
     //male lw:1900 mh:2500 gw:2800
     //female lw:1400 mh:2000 gw:2300
