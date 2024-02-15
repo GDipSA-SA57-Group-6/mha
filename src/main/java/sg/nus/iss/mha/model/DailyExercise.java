@@ -1,6 +1,7 @@
 package sg.nus.iss.mha.model;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.lang.NonNull;
