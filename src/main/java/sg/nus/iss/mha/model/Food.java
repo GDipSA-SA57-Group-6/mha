@@ -21,14 +21,14 @@ public class Food {
 	private int fat;
 	private int cab;
 	private String userId;
-	private int type;
+	//private int type;
 
 	@OneToMany(mappedBy = "food")
 	private List<SubmissionItem> submissionItems;
 
 	public Food() {}
 	
-	public Food(String name, String quantity_description, int cal, int protein, int fat, int cab, String userId, int type) {
+	public Food(String name, String quantity_description, int cal, int protein, int fat, int cab, String userId) {
 		this.name = name;
 		this.quantity_description = quantity_description;
 		this.cal = cal;
@@ -36,7 +36,7 @@ public class Food {
 		this.fat = fat;
 		this.cab = cab;
 		this.userId = userId;
-		this.type = type;
+		//this.type = type;
 		
 	}
 
@@ -104,6 +104,7 @@ public class Food {
 		this.userId = userId;
 	}
 
+	/*
 	public int getType() {
 		return type;
 	}
@@ -111,12 +112,12 @@ public class Food {
 	public void setType(int type) {
 		this.type = type;
 	}
+	*/
 
 	@Override
 	public String toString() {
 		return "Food [id=" + id + ", name=" + name + ", quantity_description=" + quantity_description + ", protein="
-				+ protein + ", cal=" + cal + ", fat=" + fat + ", cab=" + cab + ", userId=" + userId + ", type=" + type
-				+ "]";
+				+ protein + ", cal=" + cal + ", fat=" + fat + ", cab=" + cab + ", userId=" + userId + "]";
 	}
 	
 }
