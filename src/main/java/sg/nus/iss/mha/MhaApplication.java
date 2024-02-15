@@ -96,7 +96,7 @@ public class MhaApplication {
 				food1.setQuantity_description("1 big");
 				food1.setProtein(1);
 				food1.setCal(105);
-				food1.setCab(27);
+				food1.setCarb(27);
 				food1.setFat(0);
 				
 				foodRepository.save(food1);
@@ -107,7 +107,7 @@ public class MhaApplication {
 				food2.setQuantity_description("2 ounces");
 				food2.setProtein(10);
 				food2.setCal(200);
-				food2.setCab(40);
+				food2.setCarb(40);
 				food2.setFat(1);
 				
 				foodRepository.save(food2);
@@ -117,7 +117,7 @@ public class MhaApplication {
 				food3.setQuantity_description("200ml");
 				food3.setProtein(0);
 				food3.setCal(84);
-				food3.setCab(21);
+				food3.setCarb(21);
 				food3.setFat(0);
 				
 				foodRepository.save(food3);
@@ -128,7 +128,7 @@ public class MhaApplication {
 				food4.setQuantity_description("1/2 cup");
 				food4.setProtein(2);
 				food4.setCal(102);
-				food4.setCab(22);
+				food4.setCarb(22);
 				food4.setFat(0);
 				
 				foodRepository.save(food4);
@@ -140,7 +140,7 @@ public class MhaApplication {
 				food5.setQuantity_description(" 6 ounces");
 				food5.setProtein(38);
 				food5.setCal(384);
-				food5.setCab(0);
+				food5.setCarb(0);
 				food5.setFat(26);
 				
 				foodRepository.save(food5);
@@ -151,7 +151,7 @@ public class MhaApplication {
 				food6.setQuantity_description("200g");
 				food6.setProtein(20);
 				food6.setCal(200);
-				food6.setCab(5);
+				food6.setCarb(5);
 				food6.setFat(10);
 				food6.setUserId("1");
 
@@ -163,7 +163,7 @@ public class MhaApplication {
 				food7.setQuantity_description("1 big");
 				food7.setProtein(6);
 				food7.setCal(70);
-				food7.setCab(1);
+				food7.setCarb(1);
 				food7.setFat(5);
 				food7.setUserId("1");
 
@@ -175,7 +175,7 @@ public class MhaApplication {
 				food8.setQuantity_description("1 big");
 				food8.setProtein(2);
 				food8.setCal(200);
-				food8.setCab(25);
+				food8.setCarb(25);
 				food8.setFat(10);
 				food8.setUserId("2");
 

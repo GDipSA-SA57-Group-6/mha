@@ -19,7 +19,7 @@ public class Food {
 	private int protein;
 	private int cal; 
 	private int fat;
-	private int cab;
+	private int carb;
 	private String userId;
 	//private int type;
 
@@ -28,13 +28,13 @@ public class Food {
 
 	public Food() {}
 	
-	public Food(String name, String quantity_description, int cal, int protein, int fat, int cab, String userId) {
+	public Food(String name, String quantity_description, int cal, int protein, int fat, int carb, String userId) {
 		this.name = name;
 		this.quantity_description = quantity_description;
 		this.cal = cal;
 		this.protein = protein;
 		this.fat = fat;
-		this.cab = cab;
+		this.carb = carb;
 		this.userId = userId;
 		//this.type = type;
 		
@@ -89,11 +89,11 @@ public class Food {
 	}
 
 	public int getCab() {
-		return cab;
+		return carb;
 	}
 
-	public void setCab(int cab) {
-		this.cab = cab;
+	public void setCarb(int carb) {
+		this.carb = carb;
 	}
 
 	public String getUserId() {
@@ -117,7 +117,7 @@ public class Food {
 	@Override
 	public String toString() {
 		return "Food [id=" + id + ", name=" + name + ", quantity_description=" + quantity_description + ", protein="
-				+ protein + ", cal=" + cal + ", fat=" + fat + ", cab=" + cab + ", userId=" + userId + "]";
+				+ protein + ", cal=" + cal + ", fat=" + fat + ", carb=" + carb + ", userId=" + userId + "]";
 	}
 	
 }
