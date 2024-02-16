@@ -121,7 +121,7 @@ public class SubmissionController {
             	dailySummary.setCal_sum(dailySummary.getCal_sum() + submissionItem.getFood().getCal());
             	dailySummary.setProtein_sum(dailySummary.getProtein_sum() + submissionItem.getFood().getProtein());
             	dailySummary.setFat_sum(dailySummary.getFat_sum() + submissionItem.getFood().getFat());
-            	dailySummary.setCarb_sum(dailySummary.getCarb_sum() + submissionItem.getFood().getCab());
+            	dailySummary.setCarb_sum(dailySummary.getCarb_sum() + submissionItem.getFood().getCarb());
             }
             
             dailySummaryService.saveDailySummary(dailySummary);
