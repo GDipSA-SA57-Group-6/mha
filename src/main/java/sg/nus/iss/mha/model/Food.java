@@ -21,7 +21,6 @@ public class Food {
 	private int fat;
 	private int carb;
 	private String userId;
-	//private int type;
 
 	@OneToMany(mappedBy = "food")
 	private List<SubmissionItem> submissionItems;
@@ -104,15 +103,6 @@ public class Food {
 		this.userId = userId;
 	}
 
-	/*
-	public int getType() {
-		return type;
-	}
-
-	public void setType(int type) {
-		this.type = type;
-	}
-	*/
 
 	@Override
 	public String toString() {

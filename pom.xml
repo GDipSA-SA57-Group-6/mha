@@ -14,7 +14,9 @@
 	<name>mha</name>
 	<description>AD Project</description>
 	<properties>
+		<!--deployment
       <maven-compiler-plugin-artifactId>maven-compiler-plugin</maven-compiler-plugin-artifactId>
+		-->
 		<java.version>17</java.version>
 	</properties>
 	<dependencies> 	
@@ -85,7 +87,9 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			<!--deployment
 				<configuration>
+
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
@@ -93,6 +97,8 @@
 						</exclude>
 					</excludes>
 				</configuration>
+			-->
+			
 			</plugin>
 				
 			        <!-- Maven Compiler Plugin -->
