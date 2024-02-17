@@ -42,35 +42,6 @@ public class UserController {
     }
   }
   
-  /*
-      @GetMapping("/get/{userId}")
-    public ResponseEntity<User> getUserById(@PathVariable Integer userId, 
-    		HttpSession session) {
-        // Retrieve the token from the session
-        String authToken = (String) session.getAttribute("authToken");
-
-        if (authToken == null) {
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-        }
-
-        // Use the token to get the user session
-        UserSession userSession = tokenService.getUserSession(authToken);
-
-        if (userSession == null || userSession.getUser().getUserId() != userId) {
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-        }
-
-        // If authenticated, proceed to retrieve the user's data
-        Optional<User> userOptional = uService.findUser(userId);
-        User requestedUser = userOptional.orElse(null);
-
-        if (requestedUser == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
-        return new ResponseEntity<>(requestedUser, HttpStatus.OK);
-    } 
-  */
   
   /*
   {

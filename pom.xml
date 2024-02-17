@@ -15,7 +15,7 @@
 	<description>AD Project</description>
 	<properties>
       <maven-compiler-plugin-artifactId>maven-compiler-plugin</maven-compiler-plugin-artifactId>
-		<java.version>8</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies> 	
 		<dependency>
@@ -94,17 +94,11 @@
 					</excludes>
 				</configuration>
 			</plugin>
-			
-			
-			
+				
 			        <!-- Maven Compiler Plugin -->
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
-            <configuration>
-                <source>1.8</source>
-                <target>1.8</target>
-            </configuration>
         </plugin>
         
         
