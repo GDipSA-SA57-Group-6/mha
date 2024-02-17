@@ -139,7 +139,6 @@ public class DailyExerciseController {
         Map<String, Object> response = new HashMap<>();
         response.put("exerciseDate", exercise.getExerciseDate());
         response.put("caloriesBurnt", exercise.getCaloriesBurnt());
-        // Add other fields as needed
         return response;
     }
 }
