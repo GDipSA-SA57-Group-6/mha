@@ -65,13 +65,17 @@
 
 package sg.nus.iss.mha;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import sg.nus.iss.mha.model.Food;
-import sg.nus.iss.mha.repository.FoodRepository;
+import sg.nus.iss.mha.model.DailyExercise;
+import sg.nus.iss.mha.repository.DailyExerciseRepository;
+import sg.nus.iss.mha.repository.UserRepository;
 
 @SpringBootApplication
 public class MhaApplication {
@@ -224,17 +228,17 @@ public class MhaApplication {
 			DailyExerciseRepository dailyExerciseRepo) {
 			return (args) -> {
 				ZoneId zoneId = ZoneId.of("Asia/Singapore");
-				DailyExercise exercise7 = new DailyExercise(LocalDate.now(zoneId), uRepo.findById(2).orElse(null), 0);
+				DailyExercise exercise7 = new DailyExercise(LocalDate.now(zoneId), uRepo.findById(1).orElse(null), 0);
 			    dailyExerciseRepo.save(exercise7);
-			    DailyExercise exercise6 = new DailyExercise(LocalDate.now(zoneId).minusDays(1), uRepo.findById(2).orElse(null), 250);
+			    DailyExercise exercise6 = new DailyExercise(LocalDate.now(zoneId).minusDays(1), uRepo.findById(1).orElse(null), 250);
 			    dailyExerciseRepo.save(exercise6);
-			    DailyExercise exercise5 = new DailyExercise(LocalDate.now(zoneId).minusDays(2), uRepo.findById(2).orElse(null), 150);
+			    DailyExercise exercise5 = new DailyExercise(LocalDate.now(zoneId).minusDays(2), uRepo.findById(1).orElse(null), 150);
 			    dailyExerciseRepo.save(exercise5);
-			    DailyExercise exercise3 = new DailyExercise(LocalDate.now(zoneId).minusDays(4), uRepo.findById(2).orElse(null), 50);
+			    DailyExercise exercise3 = new DailyExercise(LocalDate.now(zoneId).minusDays(4), uRepo.findById(1).orElse(null), 50);
 			    dailyExerciseRepo.save(exercise3);
-			    DailyExercise exercise2 = new DailyExercise(LocalDate.now(zoneId).minusDays(5), uRepo.findById(2).orElse(null), 100);
+			    DailyExercise exercise2 = new DailyExercise(LocalDate.now(zoneId).minusDays(5), uRepo.findById(1).orElse(null), 100);
 			    dailyExerciseRepo.save(exercise2);
-			    DailyExercise exercise1 = new DailyExercise(LocalDate.now(zoneId).minusDays(6), uRepo.findById(2).orElse(null), 250);
+			    DailyExercise exercise1 = new DailyExercise(LocalDate.now(zoneId).minusDays(6), uRepo.findById(1).orElse(null), 250);
 			    dailyExerciseRepo.save(exercise1);
 			};
 	}		 
