@@ -68,13 +68,12 @@ public class VideoController {
                 } else if (userType == 2800 || userType == 2300) {
                     return ResponseEntity.ok(3);
                 }
-            } else {
-                // 有心脏病或糖尿病风险
-                if (userType == 1900 || userType == 1400) {
+            } else{
+                if (heartDiseaseClass == 1 && diabetesClass == 0) {
                     return ResponseEntity.ok(4);
-                } else if (userType == 2500 || userType == 2000) {
+                } else if (heartDiseaseClass == 0 && diabetesClass == 1) {
                     return ResponseEntity.ok(5);
-                } else if (userType == 2800 || userType == 2300) {
+                } else if (heartDiseaseClass == 1 && diabetesClass == 1) {
                     return ResponseEntity.ok(6);
                 }
             }
@@ -85,7 +84,6 @@ public class VideoController {
     // 说明用于推荐的卡路里和年龄的标准
     // 男性 lw:1900 mh:2500 gw:2800
     // 女性 lw:1400 mh:2000 gw:2300
-
     @GetMapping("/videos/{type}")
     public ResponseEntity<List<Video>> getVideosByType(@PathVariable Integer type) {
         // 调用VideoService来获取视频列表
