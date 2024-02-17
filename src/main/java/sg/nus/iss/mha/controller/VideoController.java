@@ -68,13 +68,12 @@ public class VideoController {
                 } else if (userType == 2800 || userType == 2300) {
                     return ResponseEntity.ok(3);
                 }
-            } else {
-                // 有心脏病或糖尿病风险
-                if (userType == 1900 || userType == 1400) {
+            } else{
+                if (heartDiseaseClass == 1 && diabetesClass == 0) {
                     return ResponseEntity.ok(4);
-                } else if (userType == 2500 || userType == 2000) {
+                } else if (heartDiseaseClass == 0 && diabetesClass == 1) {
                     return ResponseEntity.ok(5);
-                } else if (userType == 2800 || userType == 2300) {
+                } else if (heartDiseaseClass == 1 && diabetesClass == 1) {
                     return ResponseEntity.ok(6);
                 }
             }
