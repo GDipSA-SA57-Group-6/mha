@@ -65,17 +65,13 @@
 
 package sg.nus.iss.mha;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
-
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import sg.nus.iss.mha.model.DailyExercise;
-import sg.nus.iss.mha.repository.DailyExerciseRepository;
-import sg.nus.iss.mha.repository.UserRepository;
+import sg.nus.iss.mha.model.Food;
+import sg.nus.iss.mha.repository.FoodRepository;
 
 @SpringBootApplication
 public class MhaApplication {

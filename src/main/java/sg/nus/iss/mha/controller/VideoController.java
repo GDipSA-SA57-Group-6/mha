@@ -84,7 +84,6 @@ public class VideoController {
     // 说明用于推荐的卡路里和年龄的标准
     // 男性 lw:1900 mh:2500 gw:2800
     // 女性 lw:1400 mh:2000 gw:2300
-
     @GetMapping("/videos/{type}")
     public ResponseEntity<List<Video>> getVideosByType(@PathVariable Integer type) {
         // 调用VideoService来获取视频列表

@@ -88,7 +88,7 @@ public class Food {
 		this.fat = fat;
 	}
 
-	public int getCab() {
+	public int getCarb() {
 		return carb;
 	}
 
