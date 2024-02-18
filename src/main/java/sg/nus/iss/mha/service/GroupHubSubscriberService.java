@@ -22,7 +22,7 @@ public class GroupHubSubscriberService implements ISubscriber {
 
     @Override
     public List<GroupHub> searchByName(String name) {
-        return null;
+        return groupHubRepository.findByNameContaining(name);
     }
 
     @Override

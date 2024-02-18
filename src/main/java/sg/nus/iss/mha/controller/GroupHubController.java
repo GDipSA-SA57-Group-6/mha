@@ -8,6 +8,9 @@ import sg.nus.iss.mha.service.GroupHubPublisherService;
 import sg.nus.iss.mha.service.GroupHubSubscriberService;
 import sg.nus.iss.mha.service.GroupHubValidator;
 import jakarta.validation.Valid;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +19,10 @@ import org.springframework.validation.Validator;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin
@@ -34,6 +40,11 @@ public class GroupHubController {
 
     @Autowired
     private GroupHubSubscriberService groupHubSubscriberService;
+
+    private final Logger logger = LoggerFactory.getLogger(GroupHubController.class);
+    @Autowired
+    private ObjectMapper objectMapper; // Spring Boot自动配置了ObjectMapper
+
 
     // register GroupHub validator.
     @Autowired
@@ -133,9 +144,18 @@ public class GroupHubController {
 
     @GetMapping("/get")
     public ResponseEntity<?> getAllGroupHub() {
-        return new ResponseEntity<>(groupHubRepository.findAll(), HttpStatus.OK);
+        try {
+            List<GroupHub> groupHubs = groupHubRepository.findAll();
+            // 将对象序列化为JSON字符串
+            String json = objectMapper.writeValueAsString(groupHubs);
+            // 输出完整的JSON字符串到日志
+            logger.info("All GroupHubs: {}", json);
+            return ResponseEntity.ok(groupHubs);
+        } catch (Exception e) {
+            logger.error("Error serializing GroupHub data", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error processing request");
+        }
     }
-
     /**
      * 返回某用户所有拼团事件
      * @param userId
@@ -166,4 +186,15 @@ public class GroupHubController {
     public ResponseEntity<?> getSubscribedUsersByGroupId(@RequestParam("groupId") Long groupId) {
         return new ResponseEntity<>(groupHubSubscriberService.getSubscribedUsersByGroupId(groupId), HttpStatus.OK);
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<?> searchGroupHubs(@RequestParam("name") String name) {
+        // 调用服务层的searchByName方法执行搜索
+        List<GroupHub> searchResults = groupHubSubscriberService.searchByName(name);
+        if (searchResults.isEmpty()) {
+            return new ResponseEntity<>("No GroupHubs found matching the search criteria", HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(searchResults, HttpStatus.OK);
+    }
+
 }
