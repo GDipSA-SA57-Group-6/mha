@@ -56,20 +56,24 @@ public class GroupHubController {
 
     @PostMapping("/create")
     public ResponseEntity<?> createGroupHub(@RequestParam Integer userId, @Valid @RequestBody GroupHub inGroupHub, BindingResult bindingResult) {
-        User user = userRepository.findById(userId).get();
-        if(user == null) return new ResponseEntity<>("User id does not exist", HttpStatus.NOT_FOUND);
-
-        // There are some errors in binding object.
-        if(bindingResult.hasErrors()) {
-            bindingResult.getAllErrors().forEach( error -> {
-                System.out.println(error.getDefaultMessage());
-            });
-
-            String errMsg = "error in binding Application";
-            return new ResponseEntity<>(errMsg, HttpStatus.EXPECTATION_FAILED);
+        Optional<User> optionalUser = userRepository.findById(userId);
+        if (!optionalUser.isPresent()) {
+            return new ResponseEntity<>("User id does not exist", HttpStatus.NOT_FOUND);
         }
-
-        // When object reaches this level, part ot it is already legal.
+        
+        User user = optionalUser.get();
+    
+        // There are some errors in binding object.
+        if (bindingResult.hasErrors()) {
+            StringBuilder errors = new StringBuilder();
+            bindingResult.getAllErrors().forEach(error -> errors.append(error.getDefaultMessage()).append("\n"));
+            return new ResponseEntity<>(errors.toString(), HttpStatus.BAD_REQUEST);
+        }
+    
+        // Log the state of the user before setting it to the newGroupHub
+        logger.info("Setting publishedBy user with ID: {} and Name: {}", user.getUserId(), user.getName());
+    
+        // When object reaches this level, part of it is already legal.
         GroupHub newGroupHub = new GroupHub();
         newGroupHub.setName(inGroupHub.getName());
         newGroupHub.setQuantity(inGroupHub.getQuantity());
@@ -80,9 +84,14 @@ public class GroupHubController {
         newGroupHub.setPublishedBy(user);
         newGroupHub.setStartTime(LocalDate.now());
         groupHubRepository.save(newGroupHub);
-
+    
+        // Optionally, log the state of the newGroupHub after saving
+        logger.info("Created GroupHub with ID: {} and publishedBy user ID: {}", newGroupHub.getId(), newGroupHub.getPublishedBy().getUserId());
+        logger.info("Created newGroupHub: {}", newGroupHub.toString());
+    
         return new ResponseEntity<>(newGroupHub, HttpStatus.CREATED);
     }
+    
 
     @GetMapping("/subscribe")
     public ResponseEntity<?> eventSubscribe(@RequestParam Integer userId, @RequestParam Long groupId) {
@@ -145,6 +154,23 @@ public class GroupHubController {
     @GetMapping("/get")
     public ResponseEntity<?> getAllGroupHub() {
         try {
+            // 使用自定义方法来获取所有GroupHub并强制加载publishedBy
+            List<GroupHub> groupHubs = groupHubRepository.findAllWithPublishedBy();
+            // 将对象序列化为JSON字符串
+            String json = objectMapper.writeValueAsString(groupHubs);
+            // 输出完整的JSON字符串到日志
+            logger.info("All GroupHubs: {}", json);
+            return ResponseEntity.ok(groupHubs); // 直接返回groupHubs，Jackson会处理序列化
+        } catch (Exception e) {
+            logger.error("Error retrieving GroupHub data", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error processing request");
+        }
+    }    
+
+    /*
+    @GetMapping("/get")
+    public ResponseEntity<?> getAllGroupHub() {
+        try {
             List<GroupHub> groupHubs = groupHubRepository.findAll();
             // 将对象序列化为JSON字符串
             String json = objectMapper.writeValueAsString(groupHubs);
@@ -156,6 +182,8 @@ public class GroupHubController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error processing request");
         }
     }
+    */
+
     /**
      * 返回某用户所有拼团事件
      * @param userId

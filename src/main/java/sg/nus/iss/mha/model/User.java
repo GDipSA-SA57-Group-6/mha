@@ -81,6 +81,19 @@ public class User implements Serializable {
       this.targetCalories = "male".equalsIgnoreCase(gender) ? 2500 : 2000;	
   }
 
+  @Override
+  public String toString() {
+      return "User{" +
+              "userId=" + userId +
+              ", name='" + name + '\'' +
+              ", birthDate=" + birthDate +
+              ", gender='" + gender + '\'' +
+              ", emailAddress='" + emailAddress + '\'' +
+              ", targetCalories=" + targetCalories +
+              '}';
+  }
+
+
   @Column(name="target_calories")
   private int targetCalories;
   
