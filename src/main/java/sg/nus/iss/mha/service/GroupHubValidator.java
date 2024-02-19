@@ -1,7 +1,7 @@
+
 package sg.nus.iss.mha.service;
 
 import sg.nus.iss.mha.model.GroupHub;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -20,7 +20,6 @@ public class GroupHubValidator implements Validator {
         return GroupHub.class.isAssignableFrom(clazz);
     }
 
-    @SuppressWarnings("null")
     @Override
     public void validate(Object target, Errors errors) {
         GroupHub groupHub = (GroupHub) target;

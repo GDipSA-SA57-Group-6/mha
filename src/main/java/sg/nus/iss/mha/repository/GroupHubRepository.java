@@ -1,3 +1,4 @@
+
 package sg.nus.iss.mha.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,7 +17,4 @@ public interface GroupHubRepository extends JpaRepository<GroupHub, Long> {
     // 通过名称查找GroupHub
     @Query("SELECT g FROM GroupHub g where g.name like %:name%")
     List<GroupHub> findByNameContaining(@Param("name") String name);
-
-    @Query("SELECT gh FROM GroupHub gh JOIN FETCH gh.publishedBy")
-    List<GroupHub> findAllWithPublishedBy();
 }

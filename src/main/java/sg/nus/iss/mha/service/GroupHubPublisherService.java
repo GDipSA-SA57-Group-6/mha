@@ -1,11 +1,10 @@
+
 package sg.nus.iss.mha.service;
 
 import sg.nus.iss.mha.interfaceimpl.IPublisher;
 import sg.nus.iss.mha.model.GroupHub;
-import sg.nus.iss.mha.model.User;
 import sg.nus.iss.mha.repository.GroupHubRepository;
-import sg.nus.iss.mha.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import sg.nus.iss.mha.repository.UserRepository;import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -62,18 +61,5 @@ public class GroupHubPublisherService implements IPublisher {
                 .filter(item -> item.getPublishedBy().getUserId().equals(userId))
                 .toList();
         return items;
-    }    
-    
-    /**
-    * 对 返回某用户所有发布订单 接口的实现
-    * @param user
-    * @return
-    */
-   public List<GroupHub> getGroupHubPublishedBy(User useri) {
-        List<GroupHub> items = groupHubRepository.findAll();
-        items = items.stream()
-               .filter(item -> item.getPublishedBy().getUserId().equals(useri.getUserId()))
-               .toList();
-        return items;
-   }
+    }
 }

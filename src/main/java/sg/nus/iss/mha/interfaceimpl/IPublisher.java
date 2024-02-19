@@ -1,7 +1,7 @@
+
 package sg.nus.iss.mha.interfaceimpl;
 
 import sg.nus.iss.mha.model.GroupHub;
-import sg.nus.iss.mha.model.User;
 
 import java.util.List;
 
@@ -34,5 +34,4 @@ public interface IPublisher {
      * @return
      */
     List<GroupHub> getGroupHubPublishedBy(Integer userId);
-    List<GroupHub> getGroupHubPublishedBy(User user);
 }

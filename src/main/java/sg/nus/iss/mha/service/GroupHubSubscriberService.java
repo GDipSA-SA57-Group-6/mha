@@ -1,14 +1,14 @@
+
 package sg.nus.iss.mha.service;
 
 import java.util.List;
+
 
 import sg.nus.iss.mha.model.User;
 import sg.nus.iss.mha.model.GroupHub;
 import sg.nus.iss.mha.repository.GroupHubRepository;
 import sg.nus.iss.mha.repository.UserRepository;
-import sg.nus.iss.mha.interfaceimpl.ISubscriber;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import sg.nus.iss.mha.interfaceimpl.ISubscriber;import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import jakarta.persistence.EntityNotFoundException;
 

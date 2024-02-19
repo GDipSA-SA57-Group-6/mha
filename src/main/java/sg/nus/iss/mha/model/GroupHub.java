@@ -1,3 +1,4 @@
+
 package sg.nus.iss.mha.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -78,7 +79,6 @@ public class GroupHub {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", quantity=" + quantity +
-                ", initialQuantity=" + initialQuantity +
                 ", likes=" + likes +
                 ", isDependOnQuantity=" + isDependOnQuantity +
                 ", latitude=" + latitude +
@@ -87,10 +87,8 @@ public class GroupHub {
                 ", startTime=" + startTime +
                 ", endTime=" + endTime +
                 ", isDependOnTime=" + isDependOnTime +
-                ", publishedBy=" + (publishedBy != null ? publishedBy.toString() : "null") +
                 '}';
     }
-    
 
     public void setConfirmed(boolean b) {
         // TODO Auto-generated method stub
